@@ -18,14 +18,95 @@ class LoginPage extends StatelessWidget {
       backgroundColor: primaryColor,
       body: Align(
         alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            _avtarWidget(),
-          ],
+        child: Container(
+          width: deviceHeight,
+          height: deviceHeight! * 0.6,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              _avtarWidget(),
+              SizedBox(
+                height: deviceHeight! * 0.05,
+              ),
+              _emailTextfield(),
+              _passwordTextField(),
+              SizedBox(
+                height: deviceHeight! * 0.1,
+              ),
+              _loginButton()
+            ],
+          ),
         ),
+      ),
+    );
+  }
+
+  Widget _loginButton() {
+    return MaterialButton(
+      onPressed: () {},
+      minWidth: deviceWidth! * 0.38,
+      height: deviceHeight! * 0.055,
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25.0),
+          side: const BorderSide(color: Colors.white)),
+      child: Text(
+        'LOG IN',
+        style: TextStyle(
+            color: primaryColor, fontSize: 18, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  Widget _passwordTextField() {
+    return SizedBox(
+      width: deviceWidth! * 0.7,
+      child: const TextField(
+        obscureText: true,
+        autocorrect: false,
+        cursorColor: Colors.white,
+        decoration: InputDecoration(
+          hintText: "Password",
+          hintStyle: TextStyle(color: Colors.white),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+            ),
+          ),
+        ),
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+  }
+
+  Widget _emailTextfield() {
+    return SizedBox(
+      width: deviceWidth! * 0.7,
+      child: const TextField(
+        autocorrect: false,
+        cursorColor: Colors.white,
+        decoration: InputDecoration(
+          hintText: "Ratn@gmail.com",
+          hintStyle: TextStyle(color: Colors.white),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.white,
+            ),
+          ),
+        ),
+        style: TextStyle(color: Colors.white),
       ),
     );
   }
