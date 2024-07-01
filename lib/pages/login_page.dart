@@ -2,7 +2,6 @@
 
 import 'package:authify/utils/animations/login_page_animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AnimatedLoginPage extends StatefulWidget {
   const AnimatedLoginPage({super.key});
@@ -45,7 +44,6 @@ class _LoginPage extends StatelessWidget {
   Color primaryColor = const Color.fromRGBO(125, 191, 211, 1.0);
   Color secondaryColor = const Color.fromRGBO(169, 224, 241, 1.0);
 
-  AnimationController? _controller;
   EnterAnimation? _animation;
   _LoginPage(controller) {
     controller = controller;
