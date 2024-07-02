@@ -23,7 +23,7 @@ class _AnimatedLoginPageState extends State<AnimatedLoginPage>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
       reverseDuration: const Duration(milliseconds: 400),
     );
   }
@@ -36,7 +36,7 @@ class _AnimatedLoginPageState extends State<AnimatedLoginPage>
 
   @override
   Widget build(BuildContext context) {
-    return _LoginPage(_controller);
+    return _LoginPage(_controller!);
   }
 }
 
@@ -47,10 +47,10 @@ class _LoginPage extends StatelessWidget {
   Color secondaryColor = const Color.fromRGBO(169, 224, 241, 1.0);
 
   EnterAnimation? _animation;
-  _LoginPage(controller) {
-    controller = controller;
-    _animation = EnterAnimation(controller);
-    controller.forward();
+  AnimationController _controller;
+  _LoginPage(this._controller) {
+    _animation = EnterAnimation(_controller);
+    _controller.forward();
   }
 
   @override
@@ -88,10 +88,11 @@ class _LoginPage extends StatelessWidget {
 
   Widget _loginButton(BuildContext context) {
     return MaterialButton(
-      onPressed: () {
+      onPressed: () async{
+        await _controller.reverse();
         Navigator.pushReplacement(
           context,
-          FadePageRoute(HomePage()),
+          FadePageRoute(const AnimatedHomePage()),
         );
       },
       minWidth: deviceWidth! * 0.38,

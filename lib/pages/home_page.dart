@@ -1,12 +1,52 @@
+import 'package:authify/utils/animations/login_page_animation.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class AnimatedHomePage extends StatefulWidget {
+  const AnimatedHomePage({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _AnimatedHomePageState();
+  }
+}
+
+class _AnimatedHomePageState extends State<AnimatedHomePage>
+    with SingleTickerProviderStateMixin {
+  AnimationController? _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+      reverseDuration: const Duration(milliseconds: 400),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller!.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _HomePage(_controller!);
+  }
+}
+
+class _HomePage extends StatelessWidget {
   double? deviceHeight;
   double? deviceWidth;
-
-  Color secondaryColor = const Color.fromRGBO(125, 191, 211, 1.0);
   Color primaryColor = const Color.fromRGBO(169, 224, 241, 1.0);
-  HomePage({super.key});
+
+  AnimationController _controller;
+  EnterAnimation? _animation;
+  _HomePage(this._controller) {
+    _animation = EnterAnimation(_controller);
+    _controller.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,18 +116,27 @@ class HomePage extends StatelessWidget {
 
   Widget _avtarWidget() {
     double circleD = deviceHeight! * 0.25;
-    return Container(
-      height: circleD,
-      width: circleD,
-      decoration: BoxDecoration(
-        color: secondaryColor,
-        borderRadius: BorderRadius.circular(500),
-        image: const DecorationImage(
-          image: AssetImage(
-            'assets/images/main_avatar.png',
-          ),
-        ),
-      ),
-    );
+    return AnimatedBuilder(
+        animation: _animation!.controller,
+        builder: (context, widget) {
+          return Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.diagonal3Values(_animation!.circleSize!.value,
+                _animation!.circleSize!.value, 1),
+            child: Container(
+              height: circleD,
+              width: circleD,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(500),
+                image: const DecorationImage(
+                  image: AssetImage(
+                    'assets/images/main_avatar.png',
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
   }
 }

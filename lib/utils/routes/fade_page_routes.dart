@@ -16,7 +16,7 @@ class FadePageRoute extends PageRouteBuilder {
             );
           },
           pageBuilder: (BuildContext context, animation, secondAnimation) {
-            return HomePage();
+            return const AnimatedHomePage();
           },
         );
 }
