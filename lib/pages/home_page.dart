@@ -38,6 +38,7 @@ class _AnimatedHomePageState extends State<AnimatedHomePage>
   }
 }
 
+// ignore: must_be_immutable
 class _HomePage extends StatelessWidget {
   double? deviceHeight;
   double? deviceWidth;

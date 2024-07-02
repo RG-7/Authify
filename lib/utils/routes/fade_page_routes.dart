@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FadePageRoute extends PageRouteBuilder {
+  // ignore: unused_field
   final Widget _child;
   FadePageRoute(this._child)
       : super(

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 class SlidePageRoute extends PageRouteBuilder {
+  // ignore: unused_field
   final Widget _child;
   SlidePageRoute(this._child)
       : super(
