@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:authify/pages/home_page.dart';
 import 'package:authify/utils/animations/login_page_animation.dart';
 import 'package:flutter/material.dart';
 
@@ -76,7 +77,7 @@ class _LoginPage extends StatelessWidget {
               SizedBox(
                 height: deviceHeight! * 0.1,
               ),
-              _loginButton()
+              _loginButton(context)
             ],
           ),
         ),
@@ -84,9 +85,16 @@ class _LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _loginButton() {
+  Widget _loginButton(BuildContext context) {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (BuildContext context) {
+            return HomePage();
+          }),
+        );
+      },
       minWidth: deviceWidth! * 0.38,
       height: deviceHeight! * 0.055,
       color: Colors.white,
@@ -158,7 +166,8 @@ class _LoginPage extends StatelessWidget {
         animation: _animation!.controller,
         builder: (context, widget) {
           return Transform(
-            transform: Matrix4.diagonal3Values(_animation!.circleSize!.value, _animation!.circleSize!.value, 1),
+            transform: Matrix4.diagonal3Values(_animation!.circleSize!.value,
+                _animation!.circleSize!.value, 1),
             alignment: Alignment.center,
             child: Container(
               height: circleD,
