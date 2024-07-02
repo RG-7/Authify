@@ -1,4 +1,6 @@
+import 'package:authify/pages/login_page.dart';
 import 'package:authify/utils/animations/login_page_animation.dart';
+import 'package:authify/utils/routes/slide_page_routes.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedHomePage extends StatefulWidget {
@@ -82,7 +84,9 @@ class _HomePage extends StatelessWidget {
 
   Widget _logOutButton(BuildContext context) {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(context, SlidePageRoute(const AnimatedLoginPage()));
+      },
       minWidth: deviceWidth! * 0.38,
       height: deviceHeight! * 0.055,
       color: Colors.white,
