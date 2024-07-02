@@ -2,6 +2,7 @@
 
 import 'package:authify/pages/home_page.dart';
 import 'package:authify/utils/animations/login_page_animation.dart';
+import 'package:authify/utils/routes/fade_page_routes.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedLoginPage extends StatefulWidget {
@@ -90,9 +91,7 @@ class _LoginPage extends StatelessWidget {
       onPressed: () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (BuildContext context) {
-            return HomePage();
-          }),
+          FadePageRoute(HomePage()),
         );
       },
       minWidth: deviceWidth! * 0.38,
